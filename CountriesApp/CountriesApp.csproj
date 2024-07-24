@@ -13,7 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="CountriesApp_1_TemporaryKey.pfx" />
     <None Remove="GoogleMaps.png" />
     <None Remove="paisesIcon.ico" />
     <None Remove="Resources\GitHub.png" />
@@ -26,10 +25,6 @@
 
   <ItemGroup>
     <Content Include="Resources\paisesIcon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="CountriesApp_1_TemporaryKey.pfx" />
   </ItemGroup>
 
   <ItemGroup>
