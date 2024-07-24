@@ -1,0 +1,34 @@
+﻿<Window x:Class="CountriesApp.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CountriesApp"
+        mc:Ignorable="d"
+        Title="About" Height="300" Width="518"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Canvas>
+            <Label>
+                <Label Content="CountriesApp" Margin="150,10,0,0" FontSize="36"/>
+            </Label>
+            <Image HorizontalAlignment="Left" Height="70" Margin="90,10,0,0" VerticalAlignment="Top" Width="72" Source="/paisesIcon.ico" Panel.ZIndex="1"/>
+            <Label>
+                <Label Content="Version 1.0.0" Margin="200,90,0,0" FontSize="20"/>
+            </Label>
+            <Label>
+                <Label Content="07/2024" Margin="215,150,0,0" FontSize="20"/>
+            </Label>
+            <Label>
+                <Label Content="Author: André Júnior" Margin="170,210,0,0" FontSize="20"/>
+            </Label>
+            <Button Content="Close" Canvas.Left="441" Canvas.Top="10" Height="24" Width="44" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Button_Click">
+                <Button.Background>
+                    <ImageBrush/>
+                </Button.Background>
+            </Button>
+            <Image x:Name="imgGitHub" Height="60" Width="99" Source="/Resources/GitHub.png" Panel.ZIndex="1" Canvas.Left="373" Canvas.Top="184" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Cursor="Hand" MouseLeftButtonUp="ImgGitHub_MouseLeftButtonUp"/>
+            <Image x:Name="imgLinkedin" Height="91" Width="116" Source="/Resources/linkedinLogo.png" Panel.ZIndex="1" Canvas.Left="50" Canvas.Top="188" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Cursor="Hand" MouseLeftButtonUp="ImgLinkedin_MouseLeftButtonUp"/>
+        </Canvas>
+    </Grid>
+</Window>

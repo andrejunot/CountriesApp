@@ -1,0 +1,85 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\paisesIcon.ico</ApplicationIcon>
+    <Company>$(André Júnior) </Company>
+    <Authors>$(André Júnior)</Authors>
+    <Copyright>2024</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CountriesApp_1_TemporaryKey.pfx" />
+    <None Remove="GoogleMaps.png" />
+    <None Remove="paisesIcon.ico" />
+    <None Remove="Resources\GitHub.png" />
+    <None Remove="Resources\GoogleMaps.png" />
+    <None Remove="Resources\linkedinLogo.png" />
+    <None Remove="Resources\mapamundo.jpg" />
+    <None Remove="Resources\noimageAvi.jpg" />
+    <None Remove="Resources\paisesIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\paisesIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="CountriesApp_1_TemporaryKey.pfx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="LiveCharts" Version="0.9.7" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PuppeteerSharp" Version="18.0.4" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.22.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="GoogleMaps.png" />
+    <Resource Include="paisesIcon.ico" />
+    <Resource Include="Resources\GitHub.png" />
+    <Resource Include="Resources\GoogleMaps.png" />
+    <Resource Include="Resources\linkedinLogo.png" />
+    <Resource Include="Resources\mapamundo.jpg" />
+    <Resource Include="Resources\noimageAvi.jpg" />
+    <Resource Include="Resources\paisesIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

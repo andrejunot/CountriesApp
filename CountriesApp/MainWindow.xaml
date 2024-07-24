@@ -1,0 +1,117 @@
+﻿<Window x:Class="CountriesApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Title="Countries Information Application" Height="520" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize" Icon="/paisesIcon.ico">
+
+    <Grid>
+        <!-- Imagem de fundo -->
+        <Image Source="/Resources/mapamundo.jpg" Stretch="Fill" Opacity="0.15" />
+
+        <!-- Grid para os outros controles -->
+        <Grid Margin="0,0,0,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ListBox com fundo transparente -->
+            <ListBox x:Name="listBoxCountries" Grid.Column="0" SelectionChanged="ListBoxCountries_SelectionChanged" Background="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Flags.Png}" Width="30" Height="20" Margin="5"/>
+                            <TextBlock Text="{Binding Name.Common}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Painel DockPanel -->
+            <DockPanel Grid.Column="1" Margin="10" VerticalAlignment="Top">
+                <!-- Informações do país -->
+                <Canvas>
+                    <!-- Labels Fixas -->
+                    <Image x:Name="lblGoogleMaps" HorizontalAlignment="Left" Cursor="Hand" MouseLeftButtonDown="LblGoogleMaps_MouseLeftButtonDown" Height="77" Width="74" Canvas.Left="220" Canvas.Top="56" VerticalAlignment="Center" Source="/GoogleMaps.png"/>
+                    <TextBlock x:Name="labelName" Text="..." HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="40" />
+                    <TextBlock x:Name="labelCapital" Text="..." HorizontalAlignment="Center" Canvas.Left="48" Canvas.Top="24" VerticalAlignment="Top" />
+                    <TextBlock x:Name="labelRegion" Text="..." HorizontalAlignment="Center" Canvas.Left="47" Canvas.Top="48" VerticalAlignment="Top" />
+                    <TextBlock x:Name="lblSubRegion" Text="..." HorizontalAlignment="Center" Canvas.Left="68" Canvas.Top="72" VerticalAlignment="Top" />
+                    <TextBlock x:Name="labelPopulation" Text="..." HorizontalAlignment="Center" Canvas.Left="68" Canvas.Top="96" VerticalAlignment="Top" />
+                    <TextBlock x:Name="labelGini" Text="..." HorizontalAlignment="Center" Canvas.Left="32" Canvas.Top="120" VerticalAlignment="Top" />
+                    <TextBlock x:Name="labelArea" Text="..." HorizontalAlignment="Center" Canvas.Left="33" Canvas.Top="144" VerticalAlignment="Top" />
+                    <TextBlock x:Name="labelLanguages" Text="..." HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" Canvas.Left="66" Canvas.Top="172" VerticalAlignment="Top" Width="627" />
+                    <TextBlock x:Name="labelCurrencies" Text="..." HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" Canvas.Left="66" Canvas.Top="203" VerticalAlignment="Top" Width="627" />
+                </Canvas>
+
+                <StackPanel Height="478">
+                    <TextBlock Text="Name:" HorizontalAlignment="Left" Margin="0,0,0,8" FontWeight="Bold"/>
+                    <TextBlock Text="Capital:" HorizontalAlignment="Left" Margin="0,0,0,8" FontWeight="Bold"/>
+                    <TextBlock Text="Region:" HorizontalAlignment="Left" Margin="0,0,0,8" FontWeight="Bold"/>
+                    <TextBlock Text="SubRegion:" HorizontalAlignment="Left" Margin="0,0,0,8" FontWeight="Bold"/>
+                    <TextBlock Text="Population:" HorizontalAlignment="Left" Margin="0,0,0,8" FontWeight="Bold"/>
+                    <TextBlock Text="Gini:" HorizontalAlignment="Left" Margin="0,0,0,8" FontWeight="Bold"/>
+                    <TextBlock Text="Area:" HorizontalAlignment="Left" Margin="0,0,0,12" FontWeight="Bold"/>
+                    <TextBlock Text="Languages:" HorizontalAlignment="Left" Margin="0,0,0,15" FontWeight="Bold"/>
+                    <TextBlock Text="Currencies:" HorizontalAlignment="Left" Margin="0,0,0,10" FontWeight="Bold"/>
+                    <!-- Espaço em branco -->
+                    <Rectangle Width="650" Grid.Column="1" Height="8" />
+                    <!-- Gráficos -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- População -->
+                        <Label x:Name="lblPopulationStatus" Content="N/A" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Visibility="Hidden" />
+                        <lvc:CartesianChart x:Name="cartesianChart1" Height="146" Width="220" Grid.Column="0" />
+
+                        <!-- Espaço em branco -->
+                        <Rectangle Width="20" Grid.Column="1" />
+
+                        <!-- Gini -->
+                        <Label x:Name="lblGiniStatus" Content="N/A" FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Visibility="Hidden" />
+                        <lvc:CartesianChart x:Name="cartesianChart2" Height="146" Width="220" Grid.Column="2" />
+
+                        <!-- Espaço em branco -->
+                        <Rectangle Width="20" Grid.Column="3" />
+
+                        <!-- Área -->
+                        <Label x:Name="lblAreaStatus" Content="N/A" FontWeight="Bold" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Visibility="Hidden" />
+                        <lvc:CartesianChart x:Name="cartesianChart3" Height="146" Width="220" Grid.Column="4" />
+                    </Grid>
+
+                    <!-- Outros controles -->
+                    <Label x:Name="labelResultado" Content="a Atualizar Países" />
+                    <Label x:Name="labelStatus" Content="Loading" HorizontalAlignment="Center" />
+                </StackPanel>
+
+                <!-- PictureBoxFlag no canto superior direito -->
+                <Canvas>
+                    <Border BorderBrush="Black" BorderThickness="1"
+                            Width="{Binding ElementName=pictureBoxFlag, Path=Width}"
+                            Height="{Binding ElementName=pictureBoxFlag, Path=Height}"
+                            Canvas.Right="0" Canvas.Top="22" Canvas.Left="-352">
+                        <Image x:Name="pictureBoxFlag" Height="124" Width="286" Canvas.Right="0" Canvas.Top="22" Canvas.Left="-352" Stretch="Fill"/>
+                    </Border>
+                </Canvas>
+            </DockPanel>
+
+            <ProgressBar x:Name="ProgressBar" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10,451,0,0" VerticalAlignment="Top" Width="698" RenderTransformOrigin="0.491,0.102"/>
+        </Grid>
+        <Button x:Name="btnAbout" Content="About" HorizontalAlignment="Left" Margin="920,10,0,0" VerticalAlignment="Top" BorderThickness="0,0,0,0" Foreground="#FFD0BEBE" Click="btnAbout_Click">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>
